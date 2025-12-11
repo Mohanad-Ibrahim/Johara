@@ -23,15 +23,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => hash::make('123123123'),
         ]);
-        $this->call([
-            CategorySeeder::class,
-            ProjectSeeder::class,
-            ServiceSeeder::class,
-            TeamSeeder::class,
-            ArticleSeeder::class,
-            EventSeeder::class,
-            CeoSeeder::class,
-        ]);
+        // $this->call([
+        //     CategorySeeder::class,
+        //     ProjectSeeder::class,
+        //     ServiceSeeder::class,
+        //     TeamSeeder::class,
+        //     ArticleSeeder::class,
+        //     EventSeeder::class,
+        //     CeoSeeder::class,
+        // ]);
 
 
 //       $about = About::create([

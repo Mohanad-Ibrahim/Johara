@@ -21,7 +21,7 @@ class EventForm
                         ->required(),
 
                     textInput::make('date')
-                        ->label('Data :')
+                        ->label('Date :')
                         ->placeholder('Ex : May 10 - 20,2024')
                         ->required(),
 
