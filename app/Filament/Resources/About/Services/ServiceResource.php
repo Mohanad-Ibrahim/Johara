@@ -25,7 +25,10 @@ class ServiceResource extends Resource
     protected static ?string $recordTitleAttribute = 'Services';
     protected static ?int $navigationSort =3;
 
-
+    public static function canViewAny(): bool
+    {
+        return false;
+    }
     public static function form(Schema $schema): Schema
     {
         return ServiceForm::configure($schema);

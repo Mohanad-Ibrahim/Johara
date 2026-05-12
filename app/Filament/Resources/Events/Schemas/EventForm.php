@@ -36,6 +36,7 @@ class EventForm
                         ->disk('public')
                         ->directory('Events')
                         ->required()
+                        ->imageEditor()
                         ->columnSpanFull(),
                 ])->columnSpanFull()->columns(2)
             ]);

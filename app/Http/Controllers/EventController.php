@@ -8,49 +8,45 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index(){
-                  $events = Event::orderBy('created_at','DESC')->limit(5)->get();
-            if(!$events){
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No Events Found',
-                ]);
-            }
-            $events = $events->map(function($event){
-                return [
+    public function index()
+    {
+        $events = Event::orderBy('created_at', 'DESC')->limit(5)->get();
 
-                    'id' => $event->id,
-                    'location' => $event->location,
-                    'date' => $event->date,
-                    'description' => $event->description,
-                    'image' => $event->image_url,
+        $remainingCount = 5 - $events->count();
 
-                ];
-            });
+        $projects = collect();
+        if ($remainingCount > 0) {
+            $projects = Project::inRandomOrder()
+                ->select('id', 'name', 'location', 'main_description', 'date', 'mainImage')
+                ->limit($remainingCount)
+                ->get();
+        }
 
+        $formattedEvents = $events->map(fn($event) => [
+            'id' => $event->id,
+            'type' => 'event',
+            'location' => $event->location,
+            'description' => $event->description,
+            'date' => $event->date,
+            'image' => $event->image_url,
+        ]);
 
+        $formattedProjects = $projects->map(fn($project) => [
+            'id' => $project->id,
+            'type' => 'project',
+            'name' => $project->name,
+            'location' => $project->location,
+            'description' => $project->main_description,
+            'date' => $project->date,
+            'image' => $project->mainImage_url,
+        ]);
 
-//        $projects = Project::inRandomOrder()
-//            ->select('id', 'name', 'location','main_description', 'date', 'mainImage')
-//            ->limit(5)
-//            ->get();
-//        $projects = $projects->map(function($project){
-//            return [
-//                'id' => $project->id,
-//                'name' => $project->name,
-//                'location' => $project->location,
-//                'main_description' => $project->main_description,
-//                'date' => $project->date,
-//                'mainImage' => $project->mainImage_url,
-//            ];
-//        });
+        $combined = $formattedEvents->merge($formattedProjects);
+
         return response()->json([
-                'success' => true,
-                'event' => $events,
-//                'projects' => $projects,
-            ]);
-
-
-
+            'success' => true,
+            'message' => 'Latest 5 items (Events supplemented by Projects)',
+            'data' => $combined,
+        ]);
     }
 }

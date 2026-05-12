@@ -19,6 +19,7 @@ class TeamForm
                 FileUpload::make('image')
                     ->label('Image')
                     ->image() //
+                    ->imageEditor()
                     ->disk('public')
                     ->directory('Team') // يخزن الصور داخل مجلد storage/app/public/categories
                     ->required(),

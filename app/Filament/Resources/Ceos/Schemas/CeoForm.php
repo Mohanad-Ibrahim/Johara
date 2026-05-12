@@ -30,6 +30,7 @@ class CeoForm
                         ->multiple()
                         ->image()
                         ->openable()
+                        ->imageEditor()
                         ->required()
                         ->maxFiles(3)
                         ->minFiles(3)

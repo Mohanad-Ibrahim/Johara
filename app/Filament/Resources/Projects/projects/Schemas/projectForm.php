@@ -81,6 +81,7 @@ class projectForm
                     ->disk('public')
                     ->directory('projects/main') // يخزن الصور داخل مجلد storage/app/public/categories
                     ->columnSpanFull()
+                    ->imageEditor()
                     ->required(),
                 FileUpload::make('interior_images')
                     ->label('Interior Images')
@@ -90,6 +91,7 @@ class projectForm
                     ->image()
                     ->reorderable()
                     ->openable()
+                    ->imageEditor()
                     ->downloadable()
                     ->afterStateHydrated(function (FileUpload $component) {
                         $record = $component->getRecord();
@@ -113,6 +115,7 @@ class projectForm
                     ->image()
                     ->reorderable()
                     ->openable()
+                    ->imageEditor()
                     ->downloadable()
                     ->afterStateHydrated(function (FileUpload $component) {
                         $record = $component->getRecord();

@@ -9,7 +9,7 @@ use App\Filament\Resources\Projects\projects\Pages\Viewproject;
 use App\Filament\Resources\Projects\projects\Schemas\projectForm;
 use App\Filament\Resources\Projects\projects\Schemas\projectInfolist;
 use App\Filament\Resources\Projects\projects\Tables\projectsTable;
-use App\Models\Projects\project;
+use App\Models\Projects\Project;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;

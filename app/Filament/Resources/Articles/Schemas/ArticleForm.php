@@ -29,6 +29,7 @@ class ArticleForm
                 FileUpload::make('image')
                     ->label('Image :')
                     ->image()
+                    ->imageEditor()
                     ->disk('public')
                     ->directory('articles/cover')
                     ->required(),
@@ -64,6 +65,7 @@ class ArticleForm
                                         ->disk('public')
                                         ->directory('articles/paragraphs')
                                         ->openable()
+                                        ->imageEditor()
                                         ->downloadable(),
 
                         ])

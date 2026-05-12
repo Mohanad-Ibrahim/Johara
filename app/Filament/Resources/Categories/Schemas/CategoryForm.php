@@ -22,6 +22,7 @@ class CategoryForm
                     ->label('Category Image')
                     ->image() //
                     ->disk('public')
+                    ->imageEditor()
                     ->directory('categories') // يخزن الصور داخل مجلد storage/app/public/categories
                     ->required(),
             ]);
